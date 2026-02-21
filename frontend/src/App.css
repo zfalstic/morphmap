@@ -1,0 +1,181 @@
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Root fills viewport ─────────────────────────────── */
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #050a0e;
+}
+
+/* ── App shell ───────────────────────────────────────── */
+.app-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'JetBrains Mono', 'Courier New', Consolas, monospace;
+}
+
+/* ── Title bar ───────────────────────────────────────── */
+.title-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 8, 14, 0.95) 0%,
+    rgba(0, 8, 14, 0.6) 100%
+  );
+  border-bottom: 1px solid rgba(0, 255, 200, 0.12);
+  backdrop-filter: blur(4px);
+}
+
+.title-bar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.title-bar-label {
+  color: #00ffc8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 12px rgba(0, 255, 200, 0.55);
+}
+
+.title-bar-sub {
+  color: rgba(0, 255, 200, 0.45);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.title-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ffc8;
+  box-shadow: 0 0 6px #00ffc8;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.status-text {
+  color: rgba(0, 255, 200, 0.4);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* ── Map container fills full screen behind title bar ── */
+.map-container {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── Layer selector ──────────────────────────────────── */
+.layer-selector {
+  position: absolute;
+  top: 58px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+}
+
+.layer-btn {
+  background: rgba(5, 10, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.layer-btn:hover {
+  color: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.layer-btn.active {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* ── Legend ──────────────────────────────────────────── */
+.legend {
+  position: absolute;
+  bottom: 28px;
+  right: 20px;
+  z-index: 10;
+  background: rgba(5, 10, 14, 0.88);
+  border: 1px solid var(--accent-border, rgba(0, 255, 200, 0.2));
+  border-radius: 4px;
+  padding: 12px 14px;
+  min-width: 170px;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.3s;
+}
+
+.legend-title {
+  color: var(--accent, #00ffc8);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  margin-bottom: 2px;
+  opacity: 0.75;
+}
+
+.legend-sub {
+  color: var(--accent, #00ffc8);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  opacity: 0.35;
+  margin-bottom: 8px;
+}
+
+.legend-gradient {
+  height: 8px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  transition: background 0.3s;
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--accent, #00ffc8);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  opacity: 0.5;
+}
+
+.legend-note {
+  color: var(--accent, #00ffc8);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  opacity: 0.25;
+}
